@@ -182,6 +182,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/', (req, res) => {
+  res.send("VYT API is running.");
+})
+
 app.get('/popular', (req, res) => {
   console.log("received request at /popular");
   const url = 'http://api.nytimes.com/svc/mostpopular/v2/mostemailed/all-sections/1?api-key=' + API_KEY;
@@ -196,6 +200,8 @@ app.get('/popular', (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log('App listening on port 3000!');
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log('App listening on port ' + port);
 });
