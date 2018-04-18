@@ -200,6 +200,20 @@ app.get('/popular', (req, res) => {
   });
 });
 
+app.get('/top', (req, res) => {
+  console.log("received request at /top");
+  const url = "https://api.nytimes.com/svc/topstories/v2/home.json?api-key=" + API_KEY;
+  axios.get(url).then((response) => {
+    console.log("Received response from NYT.");
+    res.send(response.data);
+  })
+  .catch((error) => {
+    console.log(error);
+    res.status(502);
+    res.send("Error: unable to retrieve data from the Times.");
+  });
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
