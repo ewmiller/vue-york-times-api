@@ -214,6 +214,15 @@ app.get('/top', (req, res) => {
   });
 });
 
+app.get('/search/:searchTerms', (req, res) => {
+  console.log("received request at /search");
+  const url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + req.params['searchTerms'] + "&api-key=" + API_KEY + "&sort=newest";
+  axios.get(url).then((response) => {
+    console.log("Received response from NYT");
+    res.send(response.data);
+  });
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
