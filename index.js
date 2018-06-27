@@ -63,7 +63,7 @@ app.get('/summary', (req, res) => {
   if (article === undefined) {
     res.send("Error: invalid article provided.")
   } else {
-    const url = `http://api.smmry.com/?SM_API_KEY=${process.env.SMMRY_API_KEY}&SM_URL=${req.query.article}`
+    const url = `http://api.smmry.com/?SM_API_KEY=${process.env.SMMRY_API_KEY}&SM_LENGTH=6&SM_URL=${req.query.article}`
     axios({
         method: 'post',
         headers: {
